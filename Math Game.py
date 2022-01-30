@@ -41,7 +41,7 @@ def hint():
     print('** means exponent/raised to the power of. Eg:\n5 ** 2 = 25\n2 ** 3 = 8\n4 ** 1 = 4')
 
 hint()
-progress = {} # To save the score of all your tries
+progress = {} # To save the score of all your attempts
 tries = 0
 retry = 'y'
 while retry!='n':
@@ -51,7 +51,7 @@ while retry!='n':
         for k,v in progress.items(): print(f"Try {k}: {v}") # Prints score of all your tries
     print('\nBegin!\n')
     progress[tries] = run() # This lines saves the score in dictionary
-    while True:
+    while True: # Loop to make sure only recognised input is given
         retry = input("Would you like to try again. ( y/n ) ")
         if (retry == 'y') | (retry == 'n'): break
     if retry == 'y': hints = input("Would you like to view the hint: ( y/n )")

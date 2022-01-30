@@ -16,7 +16,11 @@ def run():
     for _ in range(10):
         print(f"Q. {_+1} / 10")
         q = que() # Get question from question function
-        x = int(input(f"\t\t{q} ")) # Your answer
+        try:
+            x = int(input(f"\t\t{q} ")) # Your answer
+        except:
+            print('Input not recognised')
+            continue
         part = q.split()
         if part[1]=='+': y = int(part[0]) + int(part[2]) # IF Block computes correct answer
         elif part[1]=='-': y = int(part[0]) - int(part[2])
@@ -41,7 +45,7 @@ def hint():
     print('** means exponent/raised to the power of. Eg:\n5 ** 2 = 25\n2 ** 3 = 8\n4 ** 1 = 4')
 
 hint()
-progress = {} # To save the score of all your attempts
+progress = {} # To save the score of all your tries
 tries = 0
 retry = 'y'
 while retry!='n':
@@ -51,9 +55,10 @@ while retry!='n':
         for k,v in progress.items(): print(f"Try {k}: {v}") # Prints score of all your tries
     print('\nBegin!\n')
     progress[tries] = run() # This lines saves the score in dictionary
-    while True: # Loop to make sure only recognised input is given
+    while True:
         retry = input("Would you like to try again. ( y/n ) ")
         if (retry == 'y') | (retry == 'n'): break
     if retry == 'y': hints = input("Would you like to view the hint: ( y/n )")
+    if retry == 'n': continue
     if hints == 'y': hint()
     

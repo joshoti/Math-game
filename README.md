@@ -1,6 +1,6 @@
 # Math-game
 Math Operators Game
 
-Thinking of adding negative marking option
+No Third Party Library Required
 
-And a game mode where only your operator of choice is used (Eg. Addition mode, Modulus mode... you get the point)
+### Download and Run!

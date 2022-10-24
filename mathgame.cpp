@@ -64,9 +64,17 @@ struct questionGenerator {
 	}
 };
 
+void hint()
+{
+	cout << "\n=================  HINT  =================" << endl;
+	cout << "// means floor division. Return the integer part of division. Eg:\n5 // 2 = 2\t(2 rem 1)\n8 // 3 = 2\t(2 rem 2)\n4 // 7 = 0\t(0 rem 4)" << endl;
+	cout << "% means modulus. Return the remainder part of division. Eg:\n5 % 2 = 1\t(2 rem 1)\n9 % 3 = 0\t(3 rem 0)\n4 % 7 = 4\t(0 rem 4)" << endl;
+	cout << "** means exponent/raised to the power of. Eg:\n5 ** 2 = 25\n2 ** 3 = 8\n4 ** 1 = 4\n" << endl;
+}
 int main()
 {
 	int play = 1;
+	hint();
 	while (play){
 		int correctCount = 0;
 		for (int i = 1; i < 11; i++)
@@ -78,12 +86,21 @@ int main()
 			cout << "Your Answer:    ";
 			int userInput;
 			cin >> userInput;
+			while (!cin) {
+				// If input is wrong type, clear input from stdin
+				cin.clear();
+				cin.ignore(256, '\n');
+				
+				// Let's do this again
+				cout << "Your Answer:    ";
+				cin >> userInput;
+			}
 			if (userInput == question.answer) {
 				correctCount++;
 				cout << "Correct!" << endl;
 			}
 			else
-				cout << "\nIncorrect!\nCorrect answer is: " << question.answer << endl;
+				cout << "\n" << userInput <<"\nIncorrect!\nCorrect answer is: " << question.answer << endl;
 			cout << endl;
 		}
 		cout << "You answered " << correctCount << " questions correctly!\n";
@@ -99,8 +116,17 @@ int main()
 		while (true){
 			cout << "Would you like to retry?  ( 1/0 ) [ 1=yes / 0=no ]" << endl;
 			cin >> play;
-			if (play == 1 || play == 0)
+			if (play == 0)
 				break;
+			if (play == 1)
+			{
+				cout << "Would you like to view the hint again? ( 1/0 ) ";
+				int retry;
+				cin >> retry;
+				if (retry)
+					hint();
+				break;
+			}
 		}
 	}
 }
